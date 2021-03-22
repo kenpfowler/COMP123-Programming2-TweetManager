@@ -8,7 +8,7 @@ namespace Group59
     internal class Tweet
     {
         /* Fields */
-        static private int recentID;
+        static private int recentID = 1;
 
         /* Properties */
         public int Id { get; set; }
@@ -38,9 +38,15 @@ namespace Group59
 
         public static Tweet Process(string line)
         {
-            //read line from a tweet file
-            //save values
-            //create a tweet object
+            try
+            {
+                string[] tweet = line.Split('\t');
+                return new Tweet(tweet[0], tweet[1], tweet[2], tweet[3]);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return new Tweet("invalid", "invalid", "invalid", "invalid");
+            }
         }
     }
 }
