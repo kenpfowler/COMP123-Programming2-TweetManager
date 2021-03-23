@@ -17,6 +17,7 @@ namespace Group59
 
         static TweetManager()
         {
+            //count lines in tweet file
             int lineCount = 0;
             StreamReader reader = new StreamReader(fileName);
             while (reader.ReadLine() != null)
@@ -24,9 +25,11 @@ namespace Group59
                 lineCount++;
             }
 
+            //reset reader
             reader.DiscardBufferedData();
             reader.BaseStream.Seek(0, System.IO.SeekOrigin.Begin);
 
+            //populate tweets array
             tweets = new Tweet[lineCount];
             for (int i = 0; i < lineCount; ++i)
             {
